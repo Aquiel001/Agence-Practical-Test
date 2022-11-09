@@ -11,7 +11,7 @@
 }
 
 <script>
-    function llamarVistaParcial(tbox, monthfrom, yearfrom, monthto, yearto) {
+    function llamarVistaParcial(tbox, monthfrom, yearfrom, yearto, monthto) {
         var names = [];
         for (var i = 0; i < tbox.options.length; i++) {
             names.push(tbox.options[i].text);
@@ -30,7 +30,7 @@
     });
     }
 
-    function llamarVistaParcialGraf(tbox, monthfrom, yearfrom, monthto, yearto) {
+    function llamarVistaParcialGraf(tbox, monthfrom, yearfrom, yearto, monthto) {
         var $ = jQuery;
         var names = [];
         for (var i = 0; i < tbox.options.length; i++) {
@@ -50,7 +50,7 @@
     });
     }
 
-    function llamarVistaParcialGrafPizza(tbox, monthfrom, yearfrom, monthto, yearto) {
+    function llamarVistaParcialGrafPizza(tbox, monthfrom, yearfrom, yearto, monthto) {
         var $ = jQuery;
         
         var names = [];
@@ -259,7 +259,7 @@
                                                 <div align="center">
                                                     <font color="black">
                                                         <div>
-                                                            <input class="relatorio-button" style="BACKGROUND-IMAGE: url(../../img/icone_relatorio.png); " type="submit" value="Relat&oacute;rio" name="btSalvar22" onclick="llamarVistaParcial(list2, select5, select1, select4,select3);" />
+                                                            <input class="relatorio-button" style="BACKGROUND-IMAGE: url(../../img/icone_relatorio.png)" type="submit" value="Relat&oacute;rio" name="btSalvar22" onclick="llamarVistaParcial(list2, select5, select1, select4,select3);" />
 
                                                         </div>
                                                         <div>
