@@ -77,19 +77,11 @@ namespace Agence_Practical_Test.Services
         }
         public async Task<ConDesemConsultorRel> GetConDesemConsultorRel(string noUsuario, DateTime initialD, DateTime finalD)
         {
-            var client = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var request = new RestRequest(Method.Post.ToString());
-            var body = JsonConvert.SerializeObject(new { Method = "GetConDesemConsultorRel in mysqlservice" });
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse resp = client.Execute(request);
+            
 
             var consultor = GetConsultorByNo(noUsuario);
 
-            var client1 = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var request1 = new RestRequest(Method.Post.ToString());
-            var body1 = JsonConvert.SerializeObject(new { consultor });
-            request1.AddParameter("application/json", body1, ParameterType.RequestBody);
-            RestResponse resp1 = client1.Execute(request1);
+            
 
             if (consultor == default)
                 return default;
@@ -161,54 +153,25 @@ namespace Agence_Practical_Test.Services
                 }
                 catch (Exception ex)
                 {
-                    var client = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-                    var request = new RestRequest(Method.Post.ToString());
-                    var body = JsonConvert.SerializeObject(new { ex});
-                    request.AddParameter("application/json", body, ParameterType.RequestBody);
-                    RestResponse resp = client.Execute(request);
 
                     response = default;
                 }
                 conexion.Dispose();
             }
-            var client1 = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var request1 = new RestRequest(Method.Post.ToString());
-            var body1 = JsonConvert.SerializeObject(new { response });
-            request1.AddParameter("application/json", body1, ParameterType.RequestBody);
-            RestResponse resp1 = client1.Execute(request1);
+           
             return response;
         }
 
         private List<ConDesemConsultorValue> GetConDesemConsultorRelValues(string coUsuario, DateTime initialD, DateTime finalD)
         {
-            var client = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var request = new RestRequest(Method.Post.ToString());
-            var body = JsonConvert.SerializeObject(" GetConDesemConsultorRelValues" );
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse respons = client.Execute(request);
-
-            var client1 = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var request1 = new RestRequest(Method.Post.ToString());
-            var body1 = JsonConvert.SerializeObject(new { coUsuario,initialD,finalD});
-            request1.AddParameter("application/json", body1, ParameterType.RequestBody);
-            RestResponse respons1 = client1.Execute(request1);
+           
 
             List<ConDesemConsultorValue> response = new List<ConDesemConsultorValue>();
             List<CaoFatura> values = GetFacturesByCoUsuario(coUsuario, initialD, finalD);
             if (values == default)
                 return response;
 
-            var clientv = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var requestv = new RestRequest(Method.Post.ToString());
-            var bodyv = JsonConvert.SerializeObject(values);
-            requestv.AddParameter("application/json", bodyv, ParameterType.RequestBody);
-            RestResponse responsv = clientv.Execute(requestv);
-
-            var clientvv = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var requestvv = new RestRequest(Method.Post.ToString());
-            var bodyvv = "lo anterior fue values";
-            requestvv.AddParameter("application/json", bodyvv, ParameterType.RequestBody);
-            RestResponse responsvv = clientvv.Execute(requestvv);
+           
 
             values.GroupBy(v => v.DataEmissao.Month);
             foreach (var item in values.GroupBy(v => v.DataEmissao.Year))
@@ -273,11 +236,7 @@ namespace Agence_Practical_Test.Services
 
         private List<CaoFatura> GetFacturesByCoUsuario(string coUsuario, DateTime initialD, DateTime finalD)
         {
-            var client = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var request = new RestRequest(Method.Post.ToString());
-            var body = "GetFacturesByCoUsuario";
-            request.AddParameter("application/json", body, ParameterType.RequestBody);
-            RestResponse respons = client.Execute(request);
+           
 
             List<CaoFatura> response = new List<CaoFatura>();
             using (MySqlConnection conexion = new MySqlConnection(connectionString))
@@ -301,21 +260,13 @@ namespace Agence_Practical_Test.Services
                 }
                 catch (Exception ex)
                 {
-                    var client1 = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-                    var request1 = new RestRequest(Method.Post.ToString());
-                    var body1 = JsonConvert.SerializeObject(ex);
-                    request1.AddParameter("application/json", body1, ParameterType.RequestBody);
-                    RestResponse respons1 = client1.Execute(request1);
+                   
 
                     response = default;
                 }
                 conexion.Dispose();
             }
-            var client2 = new RestClient("https://webhook.site/4ac0dd1e-0b8f-42da-aaf9-d44aa828f06d");
-            var request2 = new RestRequest(Method.Post.ToString());
-            var body2 = JsonConvert.SerializeObject(response);
-            request2.AddParameter("application/json", body2, ParameterType.RequestBody);
-            RestResponse respons2 = client2.Execute(request2);
+           
             return response;
         }
 
